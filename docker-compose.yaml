@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  user_service:
+    image: ajilpramod/user_service:latest
+    ports:
+      - "8001:8001"
+
+    container_name: user_service
+    env_file:
+      - user_service/.env
+
+  quiz_service:
+    image: ajilpramod/quiz_service:latest
+    ports:
+      - "8002:8002"
+
+    container_name: quiz_service
+    env_file:
+      - quiz_service/.env
+
+  api_gateway:
+    image: ajilpramod/api_gateway:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - quiz_service
+      - user_service
+
+    container_name: api_gateway
+    env_file:
+      - api_gateway/.env
