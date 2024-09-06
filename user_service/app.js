@@ -9,9 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", userRouter);
 app.use(globalErrorHandler);
 
-app.use(async (req, res, next) => {
-  console.log(req.body);
-});
+// app.use(async (req, res, next) => {
+//   console.log(req.body);
+// });
 
 async function mongodbConnect(req, res) {
   try {
